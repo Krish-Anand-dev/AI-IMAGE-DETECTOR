@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Vision Detector</title>
+
+  <!-- Teachable Machine -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.20.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet"/>
+
+  <!-- Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+  <link rel="stylesheet" href="static/css/style.css">
+
+</head>
+
+<body>
+  <header>
+    <h1>👑 AI Vision Detector</h1>
+    <p>Battle of Beauty: Cats 🐱 vs Dogs 🐶 vs Man 🧍</p>
+  </header>
+
+  <div id="webcam-container"></div>
+
+  <div class="glass-box" id="result">Loading model...</div>
+  <div class="glass-box" id="counter">Images counted: 0</div>
+  <div class="glass-box" id="countdown">⏳ Countdown: Waiting...</div>
+  <div class="glass-box" id="leaderboard">🏁 Leaderboard: </div>
+  <div class="glass-box" id="winner"></div>
+  <button id="restart-btn" style="display:none;" onclick="restart()">🔄 Restart</button>
+
+  <footer>
+    Made with 💛 by Krish™
+  </footer>
+
+  <!-- 🎵 Sound -->
+  <audio id="winner-sound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_515cdcda3f.mp3?filename=game-win-6104.mp3"></audio>
+
+  <script src="static/js/app.js"></script>
+
+</body>
+</html>

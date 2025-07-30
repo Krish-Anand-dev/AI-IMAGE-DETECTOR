@@ -1,0 +1,324 @@
+
+    * {
+      box-sizing: border-box;
+    }
+
+    @keyframes floatUp {
+      0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
+      50% { transform: translateY(-20px) rotate(180deg); opacity: 0.6; }
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      25% { background-position: 100% 50%; }
+      50% { background-position: 50% 100%; }
+      75% { background-position: 0% 100%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes colorWave {
+      0% { background: linear-gradient(-45deg, #0a0a0a, #1a0a2e, #16213e, #0f3460); }
+      25% { background: linear-gradient(-45deg, #1a0a2e, #16213e, #0f3460, #533483); }
+      50% { background: linear-gradient(-45deg, #16213e, #0f3460, #533483, #7209b7); }
+      75% { background: linear-gradient(-45deg, #0f3460, #533483, #7209b7, #2d1b69); }
+      100% { background: linear-gradient(-45deg, #533483, #7209b7, #2d1b69, #0a0a0a); }
+    }
+
+    @keyframes glowPulse {
+      0%, 100% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.2); }
+      50% { box-shadow: 0 0 40px rgba(255, 215, 0, 0.4); }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(-45deg, #0a0a0a, #1a0a2e, #16213e, #0f3460, #533483, #7209b7);
+      background-size: 600% 600%;
+      animation: gradientShift 20s ease infinite, colorWave 45s ease-in-out infinite;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Floating particles */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(circle at 20% 20%, rgba(255, 215, 0, 0.15) 2px, transparent 2px),
+        radial-gradient(circle at 80% 80%, rgba(114, 9, 183, 0.12) 1px, transparent 1px),
+        radial-gradient(circle at 40% 40%, rgba(83, 52, 131, 0.1) 1px, transparent 1px),
+        radial-gradient(circle at 60% 30%, rgba(255, 105, 180, 0.08) 1px, transparent 1px),
+        radial-gradient(circle at 30% 70%, rgba(0, 255, 255, 0.06) 1px, transparent 1px);
+      background-size: 150px 150px, 200px 200px, 100px 100px, 180px 180px, 120px 120px;
+      animation: floatUp 25s ease-in-out infinite;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* Additional background layer for more depth */
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(ellipse at center, transparent 0%, rgba(114, 9, 183, 0.03) 50%, transparent 100%),
+        radial-gradient(ellipse at 25% 25%, rgba(255, 215, 0, 0.02) 0%, transparent 50%),
+        radial-gradient(ellipse at 75% 75%, rgba(83, 52, 131, 0.02) 0%, transparent 50%);
+      animation: floatUp 35s ease-in-out infinite reverse;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    header {
+      margin-top: 30px;
+      text-align: center;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #FFD700;
+      text-shadow: 0 0 10px #FFD70088;
+      margin-bottom: 0.2em;
+      animation: glowPulse 3s ease-in-out infinite;
+    }
+
+    header p {
+      font-size: 1rem;
+      color: #e2e2e2;
+      margin: 0;
+      opacity: 0.9;
+    }
+
+    #webcam-container {
+      margin-top: 40px;
+      width: 420px;
+      max-width: 90%;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+      border: 2px solid #FFD70033;
+      animation: fadeInUp 1s ease-out 0.2s both, glowPulse 4s ease-in-out infinite;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    #webcam-container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(255, 215, 0, 0.3);
+    }
+
+    .glass-box {
+      backdrop-filter: blur(20px);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 215, 0, 0.2);
+      border-radius: 16px;
+      padding: 20px;
+      margin: 15px 0;
+      width: 90%;
+      max-width: 500px;
+      text-align: center;
+      color: #f9f9f9;
+      box-shadow: 0 4px 20px rgba(255, 215, 0, 0.1), 0 0 0 1px rgba(114, 9, 183, 0.1);
+      animation: fadeInUp 1s ease-out calc(0.1s * var(--delay, 0)) both;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .glass-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.15), rgba(114, 9, 183, 0.1), transparent);
+      transition: left 0.5s;
+    }
+
+    .glass-box:hover::before {
+      left: 100%;
+    }
+
+    .glass-box:nth-child(3) { --delay: 1; }
+    .glass-box:nth-child(4) { --delay: 2; }
+    .glass-box:nth-child(5) { --delay: 3; }
+    .glass-box:nth-child(6) { --delay: 4; }
+    .glass-box:nth-child(7) { --delay: 5; }
+
+    #winner {
+      background-color: #FFD70011;
+      color: #FFD700;
+      font-size: 1.3rem;
+      font-weight: 700;
+      border: 1px solid #FFD70055;
+      text-shadow: 0 0 5px #FFD70088;
+      animation: glowPulse 2s ease-in-out infinite;
+      position: relative;
+      overflow: visible;
+    }
+
+    #winner.highlight {
+      background: linear-gradient(45deg, #FFD700, #FFA500, #FF6347, #FFD700);
+      background-size: 400% 400%;
+      animation: gradientShift 2s ease infinite, winnerPulse 1.5s ease-in-out infinite, winnerGlow 3s ease-in-out infinite;
+      color: #000;
+      font-size: 2rem;
+      border: 3px solid #FFD700;
+      box-shadow: 0 0 40px rgba(255, 215, 0, 0.9), 0 0 80px rgba(255, 215, 0, 0.5);
+      transform: scale(1.1);
+      z-index: 1000;
+    }
+
+    #winner.highlight::before {
+      content: '🎉';
+      position: absolute;
+      top: -20px;
+      left: -20px;
+      font-size: 3rem;
+      animation: fireworks 2s ease-in-out infinite;
+    }
+
+    #winner.highlight::after {
+      content: '🎊';
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      font-size: 3rem;
+      animation: fireworks 2s ease-in-out infinite 0.5s;
+    }
+
+    .glass-box:hover {
+      border-color: #FFD70066;
+      box-shadow: 0 8px 25px rgba(255, 215, 0, 0.2), 0 0 0 1px rgba(114, 9, 183, 0.2);
+      transform: translateY(-3px);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    #restart-btn {
+      padding: 12px 24px;
+      font-size: 1rem;
+      font-weight: 600;
+      background: #FFD700;
+      color: #111;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 0 15px #FFD70055;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #restart-btn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      transition: all 0.4s;
+      transform: translate(-50%, -50%);
+    }
+
+    #restart-btn:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    #restart-btn:hover {
+      background: #fff2aa;
+      box-shadow: 0 8px 25px #FFD700AA;
+      transform: translateY(-2px);
+    }
+
+    footer {
+      margin-top: auto;
+      font-size: 0.8rem;
+      color: #999;
+      padding-bottom: 20px;
+      animation: fadeInUp 1s ease-out 0.8s both;
+      opacity: 0.7;
+      transition: opacity 0.3s;
+    }
+
+    footer:hover {
+      opacity: 1;
+    }
+
+    /* 🎨 Rainbow leaderboard */
+    #leaderboard {
+      font-size: 1rem;
+      font-weight: 600;
+      background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+      background-size: 200% 200%;
+      animation: gradientShift 3s ease infinite;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-align: center;
+      padding: 10px 0;
+    }
+
+    /* Smooth transitions for dynamic content */
+    #result, #counter, #countdown {
+      transition: all 0.3s ease;
+    }
+
+    /* Webcam canvas smooth appearance */
+    canvas {
+      border-radius: 18px;
+      transition: all 0.3s ease;
+    }
+
+    /* Loading state animation */
+    .loading {
+      position: relative;
+    }
+
+    .loading::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      margin: auto;
+      border: 2px solid transparent;
+      border-top-color: #FFD700;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    @keyframes spin {
+      0% { transform: translateY(-50%) rotate(0deg); }
+      100% { transform: translateY(-50%) rotate(360deg); }
+    }
